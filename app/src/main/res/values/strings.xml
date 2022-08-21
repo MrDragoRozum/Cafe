@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Cafe</string>
+    <string name="welcome">Добро пожаловать!</string>
+    <string name="Name_user_hint">Имя пользователя</string>
+    <string name="Password_user_hint">Пароль</string>
+    <string name="Sing_in">Войти</string>
+</resources>
