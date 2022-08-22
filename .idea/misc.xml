@@ -11,6 +11,8 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.187" />
         <entry key="app/src/main/res/drawable/ic_logo_hard_rock_cafe_neutral.xml" value="0.202" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_make_order.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_order_detail.xml" value="0.22" />
       </map>
     </option>
   </component>
