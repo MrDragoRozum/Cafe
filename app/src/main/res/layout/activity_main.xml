@@ -23,6 +23,17 @@
 
     </ScrollView>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:paddingTop="8dp"
+        android:text="@string/welcome"
+        android:textAlignment="center"
+        android:textColor="#F3574008"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
+
     <EditText
         android:id="@+id/editTextName"
         android:layout_width="match_parent"
