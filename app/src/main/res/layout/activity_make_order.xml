@@ -16,8 +16,7 @@
         android:textColor="#F3574008"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/radioGroupDrinks"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="8dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
         android:id="@+id/radioGroupDrinks"

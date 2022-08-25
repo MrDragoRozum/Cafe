@@ -13,6 +13,8 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MakeOrderActivity extends AppCompatActivity {
 
     private TextView textViewGreetings, textViewAdditives;
@@ -22,8 +24,9 @@ public class MakeOrderActivity extends AppCompatActivity {
     private Spinner spinnerCoffee, spinnerTea;
     private Button buttonMakeOrder;
 
-    private static final String EXTRA_USER_NAME = "userName";
+    static final String EXTRA_USER_NAME = "userName";
 
+    private String userName;
     private String drink;
 
     @Override
@@ -41,6 +44,36 @@ public class MakeOrderActivity extends AppCompatActivity {
                 onUserChoseCoffee();
             }
         });
+        radioButtonTea.setChecked(true);
+
+        buttonMakeOrder.setOnClickListener(l -> onUserMakeOrder());
+    }
+
+    private void onUserMakeOrder() {
+        ArrayList<String> additives = new ArrayList<>();
+        if(checkboxSugar.isChecked()) {
+            additives.add(checkboxSugar.getText().toString());
+        }
+        if(radioButtonTea.isChecked() && checkBoxLemon.isChecked()) {
+            additives.add(checkBoxLemon.getText().toString());
+        }
+        if(checkboxMilk.isChecked()) {
+            additives.add(checkboxMilk.getText().toString());
+        }
+
+        String drinkType = "";
+        if(radioButtonTea.isChecked()) {
+            drinkType = spinnerTea.getSelectedItem().toString();
+        } else if(radioButtonCoffee.isChecked()) {
+            drinkType = spinnerCoffee.getSelectedItem().toString();
+        }
+
+        Intent intent = OrderDetailActivity.newIntent(this,
+                userName,
+                drink,
+                additives.toString(),
+                drinkType);
+        startActivity(intent);
     }
 
     private void onUserChoseTea() {
@@ -62,7 +95,7 @@ public class MakeOrderActivity extends AppCompatActivity {
     }
 
     private void setupUserName() {
-        String userName = getIntent().getStringExtra(EXTRA_USER_NAME);
+        userName = getIntent().getStringExtra(EXTRA_USER_NAME);
         String greetings = getString(R.string.greetings, userName);
         textViewGreetings.setText(greetings);
     }

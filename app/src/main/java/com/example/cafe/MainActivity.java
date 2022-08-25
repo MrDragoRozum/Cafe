@@ -12,10 +12,10 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText editTextName;
-    EditText editTextPassword;
-    Button buttonSignIn;
-    ScrollView scrollView;
+    private EditText editTextName;
+    private EditText editTextPassword;
+    private Button buttonSignIn;
+    private ScrollView scrollView;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
