@@ -37,13 +37,14 @@ public class MakeOrderActivity extends AppCompatActivity {
 
         setupUserName();
 
-        radioGroupDrinks.setOnCheckedChangeListener((radioGroup, id) -> {
-            if(id == radioButtonTea.getId()) {
-                onUserChoseTea();
-            } else if(id == radioButtonCoffee.getId()) {
-                onUserChoseCoffee();
+        radioGroupDrinks.setOnCheckedChangeListener((e, id) -> {
+            if(radioButtonCoffee.getId() == id) {
+                onChoseCoffee();
+            } else if(radioButtonTea.getId() == id) {
+                onChoseTea();
             }
         });
+
         radioButtonTea.setChecked(true);
 
         buttonMakeOrder.setOnClickListener(l -> onUserMakeOrder());
@@ -51,17 +52,22 @@ public class MakeOrderActivity extends AppCompatActivity {
 
     private void onUserMakeOrder() {
         ArrayList<String> additives = new ArrayList<>();
-        if(checkboxSugar.isChecked()) {
-            additives.add(checkboxSugar.getText().toString());
-        }
-        if(radioButtonTea.isChecked() && checkBoxLemon.isChecked()) {
-            additives.add(checkBoxLemon.getText().toString());
+
+        if(checkBoxLemon.isChecked() && radioButtonTea.isChecked()) {
+            String lemon = checkBoxLemon.getText().toString();
+            additives.add(lemon);
         }
         if(checkboxMilk.isChecked()) {
-            additives.add(checkboxMilk.getText().toString());
+            String milk = checkboxMilk.getText().toString();
+            additives.add(milk);
+        }
+        if(checkboxSugar.isChecked()) {
+            String sugar = checkboxSugar.getText().toString();
+            additives.add(sugar);
         }
 
         String drinkType = "";
+
         if(radioButtonTea.isChecked()) {
             drinkType = spinnerTea.getSelectedItem().toString();
         } else if(radioButtonCoffee.isChecked()) {
@@ -73,26 +79,28 @@ public class MakeOrderActivity extends AppCompatActivity {
                 drink,
                 additives.toString(),
                 drinkType);
+
         startActivity(intent);
     }
 
-    private void onUserChoseTea() {
-        drink = getString(R.string.tea);
-        String additivesLabel = getString(R.string.additives, drink);
-        textViewAdditives.setText(additivesLabel);
+    private void onChoseTea() {
+        drink = radioButtonTea.getText().toString();
+        String additives = getString(R.string.additives, drink);
+        textViewAdditives.setText(additives);
         checkBoxLemon.setVisibility(View.VISIBLE);
         spinnerTea.setVisibility(View.VISIBLE);
         spinnerCoffee.setVisibility(View.INVISIBLE);
     }
 
-    private void onUserChoseCoffee() {
-        drink = getString(R.string.coffee);
-        String additivesLabel = getString(R.string.additives, drink);
-        textViewAdditives.setText(additivesLabel);
+    private void onChoseCoffee() {
+        drink = radioButtonCoffee.getText().toString();
+        String additives = getString(R.string.additives, drink);
+        textViewAdditives.setText(additives);
         checkBoxLemon.setVisibility(View.INVISIBLE);
-        spinnerCoffee.setVisibility(View.VISIBLE);
         spinnerTea.setVisibility(View.INVISIBLE);
+        spinnerCoffee.setVisibility(View.VISIBLE);
     }
+
 
     private void setupUserName() {
         userName = getIntent().getStringExtra(EXTRA_USER_NAME);
