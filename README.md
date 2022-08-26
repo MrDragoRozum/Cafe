@@ -36,7 +36,7 @@
 ### Прочее
 
 * Использован впервые array в string.xml для Spinner
-* Загрузка изображение в Android Studios (SVG и PNG)
+* Загрузка изображения в Android Studios (SVG и PNG)
 
 ### Трудности
 
