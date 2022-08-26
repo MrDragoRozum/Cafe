@@ -74,17 +74,22 @@ public class MakeOrderActivity extends AppCompatActivity {
             drinkType = spinnerCoffee.getSelectedItem().toString();
         }
 
+        // Избавляемся от угловых скобок у ArrayList.toString()
+        String additivesString = additives.toString();
+        int length = additivesString.length();
+        additivesString = additivesString.substring(1, length -1);
+
         Intent intent = OrderDetailActivity.newIntent(this,
                 userName,
                 drink,
-                additives.toString(),
+                additivesString,
                 drinkType);
 
         startActivity(intent);
     }
 
     private void onChoseTea() {
-        drink = radioButtonTea.getText().toString();
+        drink = getString(R.string.tea);
         String additives = getString(R.string.additives, drink);
         textViewAdditives.setText(additives);
         checkBoxLemon.setVisibility(View.VISIBLE);
@@ -93,7 +98,7 @@ public class MakeOrderActivity extends AppCompatActivity {
     }
 
     private void onChoseCoffee() {
-        drink = radioButtonCoffee.getText().toString();
+        drink = getString(R.string.coffee);
         String additives = getString(R.string.additives, drink);
         textViewAdditives.setText(additives);
         checkBoxLemon.setVisibility(View.INVISIBLE);
