@@ -14,17 +14,16 @@ public class OrderDetailActivity extends AppCompatActivity {
     private static final String EXTRA_ADDITIVES = "additives";
     private static final String EXTRA_DRINK_TYPE = "drinkType";
 
-    TextView textViewName;
-    TextView textViewDrinks;
-    TextView textViewDrinkType;
-    TextView textViewAdditives;
+    private TextView textViewName;
+    private TextView textViewDrinks;
+    private TextView textViewDrinkType;
+    private TextView textViewAdditives;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
         initView();
-
         setupOrder();
     }
 
