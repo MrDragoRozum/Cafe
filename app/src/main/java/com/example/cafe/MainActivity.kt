@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun listener() {
+        binding.scrollView.setOnTouchListener { v, event ->  true}
         binding.buttonSignIn.setOnClickListener {
             val nameUser = binding.editTextName.text.toString().trim()
             val namePassword = binding.editTextPassword.text.toString().trim()

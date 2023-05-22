@@ -20,7 +20,7 @@ class MakeOrderActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupUserName()
         listeners()
-
+        binding.radioButtonTea.isChecked = true
     }
 
     private fun listeners() {
@@ -31,25 +31,27 @@ class MakeOrderActivity : AppCompatActivity() {
                 } else if (radioButtonTea.id == id) {
                     onChoseTea()
                 }
-                radioButtonTea.isChecked = true
-
-                buttonMakeOrder.setOnClickListener { onUserMakeOrder() }
             }
+            buttonMakeOrder.setOnClickListener { onUserMakeOrder() }
         }
     }
 
     private fun onUserMakeOrder() {
         val additives = mutableListOf<String>()
         with(binding) {
-            additives.add(
-                when {
-                    checkBoxLemon.isChecked && radioButtonTea.isChecked ->
-                        checkBoxLemon.text.toString()
 
-                    checkboxMilk.isChecked -> checkboxMilk.text.toString()
-                    else -> checkboxSugar.text.toString()
-                }
-            )
+            if (checkBoxLemon.isChecked && radioButtonTea.isChecked) {
+                val lemon = checkBoxLemon.text.toString()
+                additives.add(lemon)
+            }
+            if (checkboxMilk.isChecked) {
+                val milk = checkboxMilk.text.toString()
+                additives.add(milk)
+            }
+            if (checkboxSugar.isChecked) {
+                val sugar = checkboxSugar.text.toString()
+                additives.add(sugar)
+            }
 
             val drinkType = if (radioButtonTea.isChecked)
                 spinnerTea.selectedItem.toString()
@@ -97,7 +99,7 @@ class MakeOrderActivity : AppCompatActivity() {
 
     companion object {
         fun newIntent(context: Context, nameUser: String): Intent {
-            val intent = Intent(context, Companion::class.java)
+            val intent = Intent(context, MakeOrderActivity::class.java)
             intent.putExtra(Extra.EXTRA_USER_NAME.name, nameUser)
             return intent
         }
