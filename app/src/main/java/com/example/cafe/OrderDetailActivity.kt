@@ -14,6 +14,18 @@ class OrderDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_order_detail)
         binding = ActivityOrderDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupOrder()
+    }
+
+    private fun setupOrder() {
+        with(binding) {
+            with(intent) {
+                textViewName.text = getStringExtra(EXTRA_USER_NAME.name)
+                textViewDrinks.text = getStringExtra(EXTRA_DRINK.name)
+                textViewDrinkType.text = getStringExtra(EXTRA_DRINK_TYPE.name)
+                textViewAdditives.text = getStringExtra(EXTRA_ADDITIVES.name)
+            }
+        }
     }
 
     companion object {
